@@ -3,7 +3,7 @@ title: "【HoloLens2】UE4.26でQRCode Trackingの座標軸に合わせてActor�
 emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["UnrealEngine","HoloLens","UE4","VisualStudio","Microsoft"]
-published: false
+published: true
 ---
 
 # はじめに
