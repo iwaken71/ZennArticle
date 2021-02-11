@@ -3,7 +3,7 @@ title: "【Meta Humans×Live Link】デジタルヒューマンをフェイシ�
 emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["UnrealEngine","DigitalHuman","MetaHumans"]
-published: false
+published: true
 ---
 # この記事のゴール
 Unreal EngineにからリリースされたMetaHumansのデジタルヒューマンに対して、iPhoneのフェイシャルキャプチャを用いてリアルタイムで顔を動かします。
