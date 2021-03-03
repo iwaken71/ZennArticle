@@ -45,6 +45,8 @@ https://www.microsoft.com/ja-jp/p/microsoft-mesh-app-preview/9p64lj74ngw0?active
 
 gltfとglbについては[こちら](https://www.codegrid.net/articles/2018-gltf-1/)
 
+(追記)
+[公式ドキュメント](https://docs.microsoft.com/en-us/mesh/mesh-app/)より、現在対応している形式はglb形式のみだそうです。
 
 ## Unitychanをglb形式で書き出す
 
