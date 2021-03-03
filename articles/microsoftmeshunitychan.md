@@ -1,5 +1,5 @@
 ---
-title: "HoloLens2のMicrosoft Mesh Appに最速でUnitychanを登場させるまで"
+title: "HoloLens2のMicrosoft Mesh Appに好きな3Dモデルをアップロードする方法"
 emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["HoloLens","MixedReality","Microsoft"]
