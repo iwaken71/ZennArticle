@@ -1,9 +1,9 @@
 ---
-title: "Unity×HoloLens2×MRTK×QRCodeやってみた"
+title: "Unity×HoloLens2×MRTK×QRCodeをとりあえず動かしたいとき"
 emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Unity","HoloLens","CSharp","VisualStudio","Microsoft"]
-published: false
+published: true
 ---
 
 # ゴールのアウトプット
@@ -26,6 +26,7 @@ https://youtu.be/T1HjwqwTOHA
 - Microsoft Mixed Reality Toolkit 2.6.1
 
 これらがすでに使用されている状態でQRコードによるトラッキングをできるようにしたい。
+MRTKとXR Plugin Managementの共存が意外と面倒くさかったので記事にしました。
 
 # NuGetForUnityをインストール
 
