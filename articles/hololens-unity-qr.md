@@ -6,20 +6,19 @@ topics: ["Unity","HoloLens","CSharp","VisualStudio","Microsoft"]
 published: false
 ---
 
-# 参考記事
+# ゴールのアウトプット
 
-https://xrdnk.hateblo.jp/entry/2020/10/24/181009
+https://youtu.be/T1HjwqwTOHA
 
-https://qiita.com/Futo_Horio/items/83284b6732ce97150181
-
-https://bibinbaleo.hatenablog.com/entry/2020/04/13/203400
 
 # 手順
 
 - NuGetForUnityをインストール
 - Microsoft.MixedReality.QRをインストール
-- XR Pluginをインストール
+- QRTrackingのSampleをダウンロード&コピー
+- XR Plugin Managementをインストール
 - 設定を変更
+- ビルド！
 
 # 前提
 
@@ -90,4 +89,13 @@ Scene上のMixedRealityToolkitのProfileを
 [QRCode]>[Prefabs]>[QRCodesManager]をScene上に配置する。
 ![image](https://user-images.githubusercontent.com/10010842/121056655-60380400-c7f9-11eb-8b54-6554d99b3dc3.png)
 
+## ビルド！
+ここまできたらHoloLens向けにBuildしたらOK。
 
+# 参考記事
+
+https://xrdnk.hateblo.jp/entry/2020/10/24/181009
+
+https://qiita.com/Futo_Horio/items/83284b6732ce97150181
+
+https://bibinbaleo.hatenablog.com/entry/2020/04/13/203400
