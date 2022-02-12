@@ -1,7 +1,7 @@
 {
-    "pasteImage.path": "${projectRoot}/images/${currentFileNameWithoutExt}",
+    "pasteImage.path": "${currentFileDir}/../images/hololens-2022-2",
     "pasteImage.showFilePathConfirmInputBox": true,
-    "pasteImage.basePath": "${projectRoot}",
+    "pasteImage.basePath": "${currentFileDir}/..",
     "pasteImage.insertPattern": "${imageSyntaxPrefix}/${imageFilePath}${imageSyntaxSuffix}",
     "pasteImage.forceUnixStyleSeparator": false
 }
