@@ -124,16 +124,16 @@ Build Settingsから **[Universal Windows Platform]** にSwitch Platform
 
 Build Settingsを開き以下のように設定する
 
-|項目|選択すべき設定|
-|---|---|
-|Target Device|**HoloLens**|
-|Architecture|**ARM64**|
-|Build Type|D3D Project|
-|Target SDK Version|Latest installed|
-|Minimum Platform Version|10.0.10230.0|
-|Visual Studio Version|Latest installed|
-|Build and Run on|Local Machine|
-|Build configuration|Release|
+| 項目                     | 選択すべき設定   |
+| ------------------------ | ---------------- |
+| Target Device            | **HoloLens**     |
+| Architecture             | **ARM64**        |
+| Build Type               | D3D Project      |
+| Target SDK Version       | Latest installed |
+| Minimum Platform Version | 10.0.10230.0     |
+| Visual Studio Version    | Latest installed |
+| Build and Run on         | Local Machine    |
+| Build configuration      | Release          |
 
 
 ![](/images/hololens-2022-2/2022-02-12-21-12-46.png)
@@ -478,8 +478,6 @@ Unityメニューから[Mixed Reality]>[Toolkit]>[Utilities]>[UnityAR]>[Update S
 
 ![](/images/hololens-2022-2/2022-02-13-00-17-52.png)
 
-# Androidの設定
-
 Mixrosoft Mixed Reality Feature Toolを立ち上げ
 
 - Azure Spatial Anchors SDK for Android 2.12.0
@@ -488,6 +486,8 @@ Mixrosoft Mixed Reality Feature Toolを立ち上げ
 を選択し[Get Features]を選択。その後[Import]、[Approve]を選択。
 
 ![](/images/hololens-2022-2/2022-02-13-02-16-29.png)
+
+# Androidの設定
 
 Unityメニューで[File]>[Build Settings]を選択して、プラットフォームを[Android]に変更する。
 
@@ -521,6 +521,34 @@ AndroidのMinimum API Levelを24に設定する。
 
 ![](/images/hololens-2022-2/2022-02-13-02-27-50.png)
 
+# iOS
+
+Unityメニューで[File]>[Build Settings]を選択して、プラットフォームを[iOS]に変更する。
+
+
+
+- [Project Settings] > [XR Plug-in Management]を選択
+- [iOS Platform]のタブを選択
+- [ARKit]に**チェックを入れる**
+![](/images/hololens-2022-2/2022-02-13-03-28-34.png)
+
+- [Project Settings] > [Player]を選択
+- [Other Settings]> [Optimization]セクション > [Strip Engine Code]の**チェックを外す**
+
+![](/images/hololens-2022-2/2022-02-13-03-33-56.png)
+
+- [Camera Usage Description]を空欄にしないようにする
+  - 例えば「Use Camera」と入力
+
+![](/images/hololens-2022-2/2022-02-13-03-44-04.png)
+
+[Assets/MRTK.Tutorials.AzureSpatialAnchors/Plugins/RestSharp]を選択。
+
+- [iOS]にチェックを入れる
+- [ARKit]にチェックを入れる
+- [Apply]をクリック
+
+![](/images/hololens-2022-2/2022-02-13-04-11-19.png)
 
 # この記事で伝えたいこと　←★重要★
 # 解決したい課題　←★重要★
