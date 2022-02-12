@@ -521,6 +521,30 @@ AndroidのMinimum API Levelを24に設定する。
 
 ![](/images/hololens-2022-2/2022-02-13-02-27-50.png)
 
+mainTemplate.gradle ファイルを構成する
+
+- [Project Settings]>[Player]>[Androidアイコン]を選択
+- [Publishing Settings]>[Build]セクション>[Custom Main Gradle Template]にチェックを入れる。するとGradle Templateファイルが生成される。
+- Assets/Plugins/Android/mainTemplate.gradleファイルをテキストエディターで開く
+- `dependencies`セクションに、次の依存関係を貼り付ける。
+
+```gradle:mainTemplate.gradle
+implementation('com.squareup.okhttp3:okhttp:[3.11.0]')
+implementation('com.microsoft.appcenter:appcenter-analytics:[1.10.0]')
+```
+
+すべて完了すると、`dependencies`セクションは次のようになります。
+
+```gradle:mainTemplate.gradle
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation('com.squareup.okhttp3:okhttp:[3.11.0]')
+    implementation('com.microsoft.appcenter:appcenter-analytics:[1.10.0]')
+**DEPS**}
+```
+
+![](/images/hololens-2022-2/2022-02-13-03-15-55.png)
+
 
 # この記事で伝えたいこと　←★重要★
 # 解決したい課題　←★重要★
