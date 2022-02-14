@@ -9,7 +9,7 @@ published: true
 Microsoft Learnの[Azure Spatial Anchors を使用して実世界のオブジェクトを固定する](https://docs.microsoft.com/ja-jp/learn/modules/azure-spatial-anchors-tutorials/)を進めていると、途中で「ここはこのページを参考にしてください」など、他のWebページに飛ぶ場合があります。
 初めてのAzure Spatial Anchorに取り組む場合「どこまで取り込めばいいんだろう...?」と不安になることがあります。
 
-この記事では **一気通貫** をコンセプトに、HoloLensとiOS,AndroidでAzure Spatial Anchorを取り合えず動かすところまで一気通貫で説明したいと思います。
+この記事では **一気通貫** をコンセプトに、HoloLensとiOS,AndroidでAzure Spatial Anchorを使って位置固定するところまで取り合えず動かすところまで一気通貫で説明したいと思います。
 
 そのため、記事が長くなるかと思いますがよろしくお願いします。
 
@@ -19,32 +19,90 @@ Microsoft Learnの[Azure Spatial Anchors を使用して実世界のオブジェ
 - Azureを使うのは初めて
 - Azure Spatial Anchorsを使うのも初めて
 
+# Azure Spatial Anchorsの説明 (知っている人は飛ばして良し)
+
+Azure Spatial Anchorsの説明についてドキュメントを読み解きます。
+
+https://docs.microsoft.com/ja-jp/learn/modules/azure-spatial-anchors-tutorials/2-get-started-with-azure-spatial-anchors
+
+### Azure Spatial Anchors の概要
+
+> Azure Spatial Anchors は、HoloLens、ARKit を使用した iOS デバイス、および ARCore を使用した Android デバイス向けの空間認識 Mixed Reality アプリケーションを作成するのに必要なツールを開発者に提供します。
+開発者は、Azure Spatial Anchors を使用して Mixed Reality プラットフォームで共同作業し、空間認識、目的とする特定の場所のマーク付け、それらの目的地の記憶を互換性のあるデバイスから行うことができます。
+
+HoloLensだけでなく、iOS、Androidにも対応している！
+
+> Azure Spatial Anchors のユース ケースには、次のようなものがあります。
+> - World-Tracking:
+> - Internet of Things(IoT):
+
+自己位置推定的な話と、現実のモノとインターネットを通じて連携できますよという話があります。
+
+> **AR Foundation**
+Unity 内の AR Foundation を使用すると、拡張現実システムを複数のプラットフォームで操作できます。 このパッケージは Unity 開発者にインターフェイスを提供しますが、AR 機能は含まれていません。 ターゲット デバイスで、Unity の公式にサポートされているターゲット プラットフォーム用の個別のパッケージも必要になります。
+> - Android 上の ARCore XR プラグイン
+> - iOS 上の ARKit XR プラグイン
+> - Magic Leap 上の Magic Leap XR プラグイン
+> - HoloLens 上の Windows XR プラグイン
+
+**「ARFoundation + ○○Plugin」** という構成なんですね。
+
+> **AR Anchor Manager script**
+
+デバイスに追跡させたい空間上の点を **アンカー(Anchor)** と呼ぶ。
+それぞれのAnchorに対してAnchorManagerはGameObjectを生成する。
+ARAnchorManagerの [Anchor Prefab]フィールドはコンテンツのためのものではなく、代わりにARFoundationがAnchorを表すGameObjectを新たに作成します。
+
+なるほど...? ちょっとわからないので、手を動かしながら理解していきましょう
+
+(メモ: ここで何ができるかわかりやすい動画や画像を置きたい)
+
 # 前提条件 (Learnページから引用)
 
 - [正しいツール](https://docs.microsoft.com/ja-jp/windows/mixed-reality/develop/install-the-tools)が構成された Windows 10 PC
 - Windows 10 SDK 10.0.18362.0 以降
 - 開発用に構成された HoloLens 2 デバイス
 - Unity 2020.3.X または 2019.4.X がインストールされ、ユニバーサル Windows プラットフォーム ビルド サポート モジュールが追加された Unity Hub
-    - 今回私は2020.3.18f1を使用します。
 - [Unity モジュールで Mixed Reality プロジェクトを設定する](https://docs.microsoft.com/ja-jp/learn/modules/mixed-reality-toolkit-project-unity/)
-    - こちらもこの記事で手順を説明します。
+    - **こちらもこの記事で手順を説明します。**
 - [Mixed Reality Feature Tool](https://www.microsoft.com/en-us/download/details.aspx?id=102778)
 - Unity のインターフェイス、シーンの作成、パッケージのインポート、シーンへの GameObjects の追加に関する基本的な知識
 - 「[Spatial Anchors リソースを作成する](https://docs.microsoft.com/ja-jp/azure/spatial-anchors/quickstarts/get-started-unity-hololens?tabs=azure-portal#create-a-spatial-anchors-resource)」セクション (クイック スタート:Azure Spatial Anchors を使用する Unity HoloLens アプリを作成する チュートリアルにあります) を完了します。
-    - こちらもこの記事で手順を説明します。
+    - **こちらもこの記事で手順を説明します。**
 
 # 著者の環境
 
-|項目|著者の環境|
+|項目|バージョン|
 |---|---|
-|||
+|Windowsバージョン|Windows10 Home|
+|Visual Studio 2019|-|
+|Unity|2020.3.18f1|
+|HoloLens2|-|
+|Mixed Reality Feature Tool|1.0.2111.0-Preview|
+
+|UnityのPlugin|バージョン|
+|---|---|
+|Mixed Reality Toolkit Foundation|2.7.3|
+|Mixed Reality OpenXR|1.3.0|
+|Azure Spatial Anchors SDK|2.12.0|
+|AR Foundation|4.1.7|
+|ARCore XR|4.1.9|
+|ARkit XR|4.1.9|
+
 # 今日の手順
 
--  UnityでHoloLensビルド用のMRTKとOpenXRをセットアップする
+- UnityでHoloLensビルド用のMRTKとOpenXRをセットアップする
+- AzureでSpatial Anchors リソースを作成する
+- Azure Spatial Anchor向けにUnityの設定
+- モバイル(iOS,Android)用の設定
+- Android向けビルドの設定
 
 # UnityでHoloLensビルド用のMRTKとOpenXRをセットアップする
 
-## MRTKの準備
+主にUnity上での作業になります。
+MRTKのimportのやり方は複数ありますが、この記事ではドキュメントに沿ってMixed Reality Feature Toolを使った手法で行っています。
+
+## 手順
 
 Unityプロジェクトを開く
 
@@ -200,7 +258,7 @@ BuildSettingを開く
 
 
 
-# 「Spatial Anchors リソースを作成する」をクリアする
+# AzureでSpatial Anchorsリソースを作成する
 
 https://docs.microsoft.com/ja-jp/azure/spatial-anchors/quickstarts/get-started-unity-hololens?tabs=azure-portal#create-a-spatial-anchors-resource
 
@@ -243,40 +301,6 @@ Create Spatial Anchorsのページに移動します。
 - Access KeysのPrimary key
 
 ![](/images/hololens-2022-2/2022-02-11-13-02-51.png)
-
-# Azure Spatial Anchorsの説明からの学びの整理
-
-## Azure Spatial Anchors の概要
-
-https://docs.microsoft.com/ja-jp/learn/modules/azure-spatial-anchors-tutorials/2-get-started-with-azure-spatial-anchors
-
-> Azure Spatial Anchors は、HoloLens、ARKit を使用した iOS デバイス、および ARCore を使用した Android デバイス向けの空間認識 Mixed Reality アプリケーションを作成するのに必要なツールを開発者に提供します。
-
-HoloLensだけでなく、iOS、Androidにも対応している！
-
-> Azure Spatial Anchors のユース ケースには、次のようなものがあります。
-> - World-Tracking:
-> - Internet of Things(IoT):
-
-自己位置推定的な話と、現実のモノとインターネットを通じて連携できますよという話があります。
-
-> **AR Foundation**
-Unity 内の AR Foundation を使用すると、拡張現実システムを複数のプラットフォームで操作できます。 このパッケージは Unity 開発者にインターフェイスを提供しますが、AR 機能は含まれていません。 ターゲット デバイスで、Unity の公式にサポートされているターゲット プラットフォーム用の個別のパッケージも必要になります。
-> - Android 上の ARCore XR プラグイン
-> - iOS 上の ARKit XR プラグイン
-> - Magic Leap 上の Magic Leap XR プラグイン
-> - HoloLens 上の Windows XR プラグイン
-
-**「ARFoundation + ○○Plugin」** という構成なんですね。
-
-> **AR Anchor Manager script**
-
-デバイスに追跡させたい空間上の点を **アンカー(Anchor)** と呼ぶ。
-それぞれのAnchorに対してAnchorManagerはGameObjectを生成する。
-ARAnchorManagerの [Anchor Prefab]フィールドはコンテンツのためのものではなく、代わりにARFoundationがAnchorを表すGameObjectを新たに作成します。
-
-ちょっとわからないので、あとで手を動かしながら理解しよう。
-
 
 
 
@@ -477,6 +501,8 @@ Hierarchyビューで[ButtonParent]オブジェクトを展開し、[SaveAzureAn
 
 # モバイル(iOS,Android)用の設定
 
+## 手順
+
 Hierarchyビューで[MixedRealityToolkit]オブジェクトを選択する。次にInspectorビューで[Camera]タブを選択。
 
 - 現在のProfileをCloneして「AzureSpatialAnchors_ARCameraProfile」等と名前を付ける。
@@ -503,8 +529,9 @@ Mixrosoft Mixed Reality Feature Toolを立ち上げ
 
 ![](/images/hololens-2022-2/2022-02-13-02-16-29.png)
 
-# Androidの設定
+# Android向けビルドの設定
 
+## 手順
 Unityメニューで[File]>[Build Settings]を選択して、プラットフォームを[Android]に変更する。
 
 Unityメニューで[Mixed Reality]>[Toolkit]>[Utilities]>[Configure Project for MRTK]を選択
@@ -561,11 +588,17 @@ dependencies {
 
 ![](/images/hololens-2022-2/2022-02-13-03-15-55.png)
 
-# iOS
+ここまで来たら、PCとAndroidをUSBでつないでBuild And Run
+
+# iOS向けビルドの設定
+
+## 開発環境
+
+iOSアプリはMacでないと開発できないので、開発機WindowsからMacに切り替える。
+
+## 手順
 
 Unityメニューで[File]>[Build Settings]を選択して、プラットフォームを[iOS]に変更する。
-
-
 
 - [Project Settings] > [XR Plug-in Management]を選択
 - [iOS Platform]のタブを選択
@@ -590,7 +623,4 @@ Unityメニューで[File]>[Build Settings]を選択して、プラットフォ�
 
 ![](/images/hololens-2022-2/2022-02-13-04-11-19.png)
 
-# この記事で伝えたいこと　←★重要★
-# 解決したい課題　←★重要★
-# 課題の原因
-# 課題を解決する技術、手法
+ここまで来たらXCode向けにBuild
