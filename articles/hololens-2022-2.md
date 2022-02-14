@@ -464,7 +464,7 @@ Hierarchyビューで[ButtonParent]オブジェクトを展開し、[SaveAzureAn
 Hierarchyビューで[MixedRealityToolkit]オブジェクトを選択する。次にInspectorビューで[Camera]タブを選択。
 
 - 現在のProfileをCloneして「AzureSpatialAnchors_ARCameraProfile」等と名前を付ける。
-- [Camera Settings Providers]を展開して、[XR SDK Windows Mixed Reality Camera Settings]の横にある「-」ボタンをクリックして削除する。
+- [Camera Settings Providers]を展開して、[XR SDK Windows Mixed Reality Camera Settings]を含むすべての[CameraSettings]を「-」ボタンをクリックして削除する。
 
 ![](/images/hololens-2022-2/2022-02-13-00-14-18.png)
 
