@@ -96,6 +96,8 @@ ARAnchorManagerの [Anchor Prefab]フィールドはコンテンツのための�
 - Azure Spatial Anchor向けにUnityの設定
 - モバイル(iOS,Android)用の設定
 - Android向けビルドの設定
+- iOS向けビルドの設定
+- Azure Spatial Anchorsの試し方
 
 # UnityでHoloLensビルド用のMRTKとOpenXRをセットアップする
 
