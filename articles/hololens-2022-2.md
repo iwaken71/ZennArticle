@@ -1,17 +1,21 @@
 ---
-title: "Microsoft Learn「Azure Spatial Anchors を使用して実世界のオブジェクトを固定する」をやってみる"
+title: "Azure Spatial Anchorsでの位置固定をHoloLens,iOS,Androidで眺めるところまで一気通貫"
 emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Unity","HoloLens","Azure"]
-published: false
+published: true
 ---
 # 概要
-Microsoft Learnで「Azure Spatial Anchors を使用して実世界のオブジェクトを固定する」を実践して困ったことや気づいたことを記事にしたいと思います。
-https://docs.microsoft.com/ja-jp/learn/modules/azure-spatial-anchors-tutorials/
+Microsoft Learnの[Azure Spatial Anchors を使用して実世界のオブジェクトを固定する](https://docs.microsoft.com/ja-jp/learn/modules/azure-spatial-anchors-tutorials/)を進めていると、途中で「ここはこのページを参考にしてください」など、他のWebページに飛ぶ場合があります。
+初めてのAzure Spatial Anchorに取り組む場合「どこまで取り込めばいいんだろう...?」と不安になることがあります。
+
+この記事では **一気通貫** をコンセプトに、HoloLensとiOS,AndroidでAzure Spatial Anchorを取り合えず動かすところまで一気通貫で説明したいと思います。
+
+そのため、記事が長くなるかと思いますがよろしくお願いします。
 
 # 読者対象
 
-- UnityやHoloLens開発はやったことがある
+- Unityを使ったHoloLens,iOS,Android開発はやったことがある
 - Azureを使うのは初めて
 - Azure Spatial Anchorsを使うのも初めて
 
@@ -23,92 +27,22 @@ https://docs.microsoft.com/ja-jp/learn/modules/azure-spatial-anchors-tutorials/
 - Unity 2020.3.X または 2019.4.X がインストールされ、ユニバーサル Windows プラットフォーム ビルド サポート モジュールが追加された Unity Hub
     - 今回私は2020.3.18f1を使用します。
 - [Unity モジュールで Mixed Reality プロジェクトを設定する](https://docs.microsoft.com/ja-jp/learn/modules/mixed-reality-toolkit-project-unity/)
-    - HoloLensの基本的開発をやったことある人はスルーしてOKです
+    - こちらもこの記事で手順を説明します。
 - [Mixed Reality Feature Tool](https://www.microsoft.com/en-us/download/details.aspx?id=102778)
 - Unity のインターフェイス、シーンの作成、パッケージのインポート、シーンへの GameObjects の追加に関する基本的な知識
--「[Spatial Anchors リソースを作成する](https://docs.microsoft.com/ja-jp/azure/spatial-anchors/quickstarts/get-started-unity-hololens?tabs=azure-portal#create-a-spatial-anchors-resource)」セクション (クイック スタート:Azure Spatial Anchors を使用する Unity HoloLens アプリを作成する チュートリアルにあります) を完了します。
-    - こちら終わっていない...! まずはこれをクリアしてからこのLearnを進めていきましょう。
+- 「[Spatial Anchors リソースを作成する](https://docs.microsoft.com/ja-jp/azure/spatial-anchors/quickstarts/get-started-unity-hololens?tabs=azure-portal#create-a-spatial-anchors-resource)」セクション (クイック スタート:Azure Spatial Anchors を使用する Unity HoloLens アプリを作成する チュートリアルにあります) を完了します。
+    - こちらもこの記事で手順を説明します。
 
+# 著者の環境
 
-# 「Spatial Anchors リソースを作成する」をクリアする
+|項目|著者の環境|
+|---|---|
+|||
+# 今日の手順
 
-https://docs.microsoft.com/ja-jp/azure/spatial-anchors/quickstarts/get-started-unity-hololens?tabs=azure-portal#create-a-spatial-anchors-resource
+-  UnityでHoloLensビルド用のMRTKとOpenXRをセットアップする
 
-この中身を見ながら進めていきます。今回、GUIで操作できる(一般の人に優しい)Azureポータルを使用するフローを行います。
-
-## 手順
-
-- [Azureポータル](https://portal.azure.com/)にアクセス
-- **[リソースの作成]** を選択
-- 検索ボックスを使用して **「Spatial Anchors」** を検索
-- **[Spatial Anchors]** を選択して **[作成]** を選択
-
-Create Spatial Anchorsのページに移動します。
-- サブスクリプション
-    - [Pay-As-You-Go] or [従量課金]
-        - 今回私は **[Pay-As-You-Go]** を選択
-    - リソースグループ
-        - 「myResourceGroup」と名前を付け、 [OK] を選択します。
-- リソースを配置する場所 (リージョン)を選択 (私が行った選択を共有)
-    - 名前は「Tokyo」を入力
-        - もっとわかりやすい名前がおすすめです「MyAppSpatialAnchors」など
-    - リージョンは「Korea Central」を選択 (Japan Eastがなかった)
-- **[確認と作成]** を選択！
-
-![](/images/hololens-2022-2/2022-02-11-12-49-21.png)
-
-さらに **[作成]** を選択。
-
-ここまでいくとデプロイが始まります。完了画面が表れます。
-
-![](/images/hololens-2022-2/2022-02-11-12-52-54.png)
-
-**[リソースに移動]** を選択
-
-![](/images/hololens-2022-2/2022-02-11-12-59-04.png)
-
-以下の情報をコピー
-- AccountID
-- Account Domain
-- Access KeysのPrimary key
-
-![](/images/hololens-2022-2/2022-02-11-13-02-51.png)
-
-# Azure Spatial Anchorsの説明からの学びの整理
-
-## Azure Spatial Anchors の概要
-
-https://docs.microsoft.com/ja-jp/learn/modules/azure-spatial-anchors-tutorials/2-get-started-with-azure-spatial-anchors
-
-> Azure Spatial Anchors は、HoloLens、ARKit を使用した iOS デバイス、および ARCore を使用した Android デバイス向けの空間認識 Mixed Reality アプリケーションを作成するのに必要なツールを開発者に提供します。
-
-HoloLensだけでなく、iOS、Androidにも対応している！
-
-> Azure Spatial Anchors のユース ケースには、次のようなものがあります。
-> - World-Tracking:
-> - Internet of Things(IoT):
-
-自己位置推定的な話と、現実のモノとインターネットを通じて連携できますよという話があります。
-
-> **AR Foundation**
-Unity 内の AR Foundation を使用すると、拡張現実システムを複数のプラットフォームで操作できます。 このパッケージは Unity 開発者にインターフェイスを提供しますが、AR 機能は含まれていません。 ターゲット デバイスで、Unity の公式にサポートされているターゲット プラットフォーム用の個別のパッケージも必要になります。
-> - Android 上の ARCore XR プラグイン
-> - iOS 上の ARKit XR プラグイン
-> - Magic Leap 上の Magic Leap XR プラグイン
-> - HoloLens 上の Windows XR プラグイン
-
-**「ARFoundation + ○○Plugin」** という構成なんですね。
-
-> **AR Anchor Manager script**
-
-デバイスに追跡させたい空間上の点を **アンカー(Anchor)** と呼ぶ。
-それぞれのAnchorに対してAnchorManagerはGameObjectを生成する。
-ARAnchorManagerの [Anchor Prefab]フィールドはコンテンツのためのものではなく、代わりにARFoundationがAnchorを表すGameObjectを新たに作成します。
-
-ちょっとわからないので、あとで手を動かしながら理解しよう。
-
-
-# Unity手順
+# UnityでHoloLensビルド用のMRTKとOpenXRをセットアップする
 
 ## MRTKの準備
 
@@ -263,6 +197,88 @@ BuildSettingを開く
 ![](/images/hololens-2022-2/2022-02-12-19-39-18.png)
 
 これでMRTKとOpenXRの設定は準備OKです！
+
+
+
+# 「Spatial Anchors リソースを作成する」をクリアする
+
+https://docs.microsoft.com/ja-jp/azure/spatial-anchors/quickstarts/get-started-unity-hololens?tabs=azure-portal#create-a-spatial-anchors-resource
+
+この中身を見ながら進めていきます。今回、GUIで操作できる(一般の人に優しい)Azureポータルを使用するフローを行います。
+
+## 手順
+
+- [Azureポータル](https://portal.azure.com/)にアクセス
+- **[リソースの作成]** を選択
+- 検索ボックスを使用して **「Spatial Anchors」** を検索
+- **[Spatial Anchors]** を選択して **[作成]** を選択
+
+Create Spatial Anchorsのページに移動します。
+- サブスクリプション
+    - [Pay-As-You-Go] or [従量課金]
+        - 今回私は **[Pay-As-You-Go]** を選択
+    - リソースグループ
+        - 「myResourceGroup」と名前を付け、 [OK] を選択します。
+- リソースを配置する場所 (リージョン)を選択 (私が行った選択を共有)
+    - 名前は「Tokyo」を入力
+        - もっとわかりやすい名前がおすすめです「MyAppSpatialAnchors」など
+    - リージョンは「Korea Central」を選択 (Japan Eastがなかった)
+- **[確認と作成]** を選択！
+
+![](/images/hololens-2022-2/2022-02-11-12-49-21.png)
+
+さらに **[作成]** を選択。
+
+ここまでいくとデプロイが始まります。完了画面が表れます。
+
+![](/images/hololens-2022-2/2022-02-11-12-52-54.png)
+
+**[リソースに移動]** を選択
+
+![](/images/hololens-2022-2/2022-02-11-12-59-04.png)
+
+以下の情報をコピー
+- AccountID
+- Account Domain
+- Access KeysのPrimary key
+
+![](/images/hololens-2022-2/2022-02-11-13-02-51.png)
+
+# Azure Spatial Anchorsの説明からの学びの整理
+
+## Azure Spatial Anchors の概要
+
+https://docs.microsoft.com/ja-jp/learn/modules/azure-spatial-anchors-tutorials/2-get-started-with-azure-spatial-anchors
+
+> Azure Spatial Anchors は、HoloLens、ARKit を使用した iOS デバイス、および ARCore を使用した Android デバイス向けの空間認識 Mixed Reality アプリケーションを作成するのに必要なツールを開発者に提供します。
+
+HoloLensだけでなく、iOS、Androidにも対応している！
+
+> Azure Spatial Anchors のユース ケースには、次のようなものがあります。
+> - World-Tracking:
+> - Internet of Things(IoT):
+
+自己位置推定的な話と、現実のモノとインターネットを通じて連携できますよという話があります。
+
+> **AR Foundation**
+Unity 内の AR Foundation を使用すると、拡張現実システムを複数のプラットフォームで操作できます。 このパッケージは Unity 開発者にインターフェイスを提供しますが、AR 機能は含まれていません。 ターゲット デバイスで、Unity の公式にサポートされているターゲット プラットフォーム用の個別のパッケージも必要になります。
+> - Android 上の ARCore XR プラグイン
+> - iOS 上の ARKit XR プラグイン
+> - Magic Leap 上の Magic Leap XR プラグイン
+> - HoloLens 上の Windows XR プラグイン
+
+**「ARFoundation + ○○Plugin」** という構成なんですね。
+
+> **AR Anchor Manager script**
+
+デバイスに追跡させたい空間上の点を **アンカー(Anchor)** と呼ぶ。
+それぞれのAnchorに対してAnchorManagerはGameObjectを生成する。
+ARAnchorManagerの [Anchor Prefab]フィールドはコンテンツのためのものではなく、代わりにARFoundationがAnchorを表すGameObjectを新たに作成します。
+
+ちょっとわからないので、あとで手を動かしながら理解しよう。
+
+
+
 
 # Azure Spatial Anchor向けにUnityの設定
 
