@@ -306,11 +306,9 @@ Create Spatial Anchorsのページに移動します。
 
 # Azure Spatial Anchor向けにUnityの設定
 
-Unityメニューの[Windows] > [Package Manager]を選択。
+https://docs.microsoft.com/ja-jp/learn/modules/azure-spatial-anchors-tutorials/3-exercise-get-started-with-azure-spatial-anchors
 
-ARFoundationの4.1.7バージョンがインストールされていることを確認します。[Packages: Unity Registry]を選択して確認。
-
-![](/images/hololens-2022-2/2022-02-12-22-19-08.png)
+こちらに戻って進めます。
 
 ## チュートリアルのアセットをインポートする。
 
@@ -598,6 +596,7 @@ iOSアプリはMacでないと開発できないので、開発機WindowsからM
 
 ## 手順
 
+
 Unityメニューで[File]>[Build Settings]を選択して、プラットフォームを[iOS]に変更する。
 
 - [Project Settings] > [XR Plug-in Management]を選択
@@ -624,3 +623,24 @@ Unityメニューで[File]>[Build Settings]を選択して、プラットフォ�
 ![](/images/hololens-2022-2/2022-02-13-04-11-19.png)
 
 ここまで来たらXCode向けにBuild
+
+# Azure Spatial Anchorsの試し方 (困っているポイント)
+
+https://docs.microsoft.com/ja-jp/learn/modules/azure-spatial-anchors-tutorials/5-exercise-save-retrieve-share-azure-spatial-anchors
+
+こちらの記事の下の方の
+
+> 更新されたアプリを 2 つの HoloLens デバイスにビルドすると、Azure Anchor ID を共有することで、空間的な位置合わせを実現できるようになります。 これをテストするには、次の手順を実行します。
+
+実際はHoloLensの2つ目のデバイスを持っていないため、iPhoneで代用しています。
+
+1. HoloLensで次のようにします。Rover Explorer を目的の場所に移動します。
+2. HoloLensで: Azure セッションを開始します。
+3. HoloLensで: Azure アンカーを作成します (Rover Explorer の場所にアンカーを作成します)。
+4. HoloLensで: Azure アンカー ID をネットワークに共有します。
+5. iPhone で次のようにします。アプリを起動します。
+6. iPhone で次のようにします。ネットワークから共有アンカー ID を取得します (HoloLensから共有されたアンカーIDを取得します)。
+7. iPhoneで: Azure セッションを開始します。
+8. iPhoneで: Azure アンカーを検索します (手順 3 の場所に Rover Explorer を配置します)。
+
+ここで6.のネットワークから共有アンカー取得ができない...というところで詰まっています。
