@@ -89,7 +89,7 @@ ARAnchorManagerの [Anchor Prefab]フィールドはコンテンツのための�
 |ARCore XR|4.1.9|
 |ARkit XR|4.1.9|
 
-# 今日の手順
+# この記事による手順の目次
 
 - UnityでHoloLensビルド用のMRTKとOpenXRをセットアップする
 - AzureでSpatial Anchors リソースを作成する
