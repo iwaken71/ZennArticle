@@ -6,7 +6,13 @@ topics: ["Unity","HoloLens","Azure"]
 published: true
 ---
 # 概要
-Microsoft Learnの[Azure Spatial Anchors を使用して実世界のオブジェクトを固定する](https://docs.microsoft.com/ja-jp/learn/modules/azure-spatial-anchors-tutorials/)を進めていると、途中で「ここはこのページを参考にしてください」など、他のWebページに飛ぶ場合があります。
+Azure Spatial Anchorsは、空間を認識した位置固定や複数デバイスでのアンカー共有を可能にするMicrosoftが提供するサービスです。
+
+![](https://docs.microsoft.com/ja-jp/azure/spatial-anchors/media/cross-platform.png)
+
+https://docs.microsoft.com/ja-jp/azure/spatial-anchors/overview
+
+習得するために、Microsoft Learnの[Azure Spatial Anchors を使用して実世界のオブジェクトを固定する](https://docs.microsoft.com/ja-jp/learn/modules/azure-spatial-anchors-tutorials/)を進めていると、途中で「ここはこのページを参考にしてください」など、他のWebページに飛ぶ場合があります。
 初めてのAzure Spatial Anchorに取り組む場合「どこまで取り込めばいいんだろう...?」と不安になることがあります。
 
 この記事では **一気通貫** をコンセプトに、HoloLensとiOS,AndroidでAzure Spatial Anchorを使って位置固定するところまで取り合えず動かすところまで一気通貫で説明したいと思います。
