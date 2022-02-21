@@ -12,12 +12,29 @@ Azure Spatial Anchorsは、空間を認識した位置固定や複数デバイ�
 
 https://docs.microsoft.com/ja-jp/azure/spatial-anchors/overview
 
-習得するために、Microsoft Learnの[Azure Spatial Anchors を使用して実世界のオブジェクトを固定する](https://docs.microsoft.com/ja-jp/learn/modules/azure-spatial-anchors-tutorials/)を進めていると、途中で「ここはこのページを参考にしてください」など、他のWebページに飛ぶ場合があります。
-初めてのAzure Spatial Anchorに取り組む場合「どこまで取り込めばいいんだろう...?」と不安になることがあります。
+習得するために、Microsoft Learnの[Azure Spatial Anchors を使用して実世界のオブジェクトを固定する](https://docs.microsoft.com/ja-jp/learn/modules/azure-spatial-anchors-tutorials/)を進めていると、途中で **「ここはこのページを参考にしてください」** など、他のWebページに飛ぶ場合があります。
+初めてのAzure Spatial Anchorに取り組む場合 **「どこまで取り込めばいいんだろう...?」** と不安になることがあります。
 
 この記事では **一気通貫** をコンセプトに、HoloLensとiOS,AndroidでAzure Spatial Anchorを使って位置固定するところまで取り合えず動かすところまで一気通貫で説明したいと思います。
 
 そのため、記事が長くなるかと思いますがよろしくお願いします。
+
+## この記事で実現すること
+
+- HoloLens,iOS,AndroidでAzure Spatial Anchorのチュートリアルサンプルをビルドする
+- iOSとAndroidでAzure Spatial Anchorによる位置固定を体験する
+
+実際にAndroidで動かしてみたデモ動画がこちら。
+Find Anchorすると、事前に固定した位置にオブジェクトが戻ることが確認できます。(空間に対してオブジェクトを固定することができる)
+
+https://youtu.be/xjDg0AYUPYo
+
+## この記事で実現できなかったこと
+
+- HoloLensによる位置固定
+- HoloLens,iOS,Android間での位置共有
+
+こちらは次回以降の記事でのチャレンジにしたいと思います。
 
 # 読者対象
 
@@ -25,45 +42,9 @@ https://docs.microsoft.com/ja-jp/azure/spatial-anchors/overview
 - Azureを使うのは初めて
 - Azure Spatial Anchorsを使うのも初めて
 
-# Azure Spatial Anchorsの説明 (知っている人は飛ばして良し)
+# チュートリアルの前提条件 (Learnページから引用)
 
-Azure Spatial Anchorsの説明についてドキュメントを読み解きます。
-
-https://docs.microsoft.com/ja-jp/learn/modules/azure-spatial-anchors-tutorials/2-get-started-with-azure-spatial-anchors
-
-### Azure Spatial Anchors の概要
-
-> Azure Spatial Anchors は、HoloLens、ARKit を使用した iOS デバイス、および ARCore を使用した Android デバイス向けの空間認識 Mixed Reality アプリケーションを作成するのに必要なツールを開発者に提供します。
-開発者は、Azure Spatial Anchors を使用して Mixed Reality プラットフォームで共同作業し、空間認識、目的とする特定の場所のマーク付け、それらの目的地の記憶を互換性のあるデバイスから行うことができます。
-
-HoloLensだけでなく、iOS、Androidにも対応している！
-
-> Azure Spatial Anchors のユース ケースには、次のようなものがあります。
-> - World-Tracking:
-> - Internet of Things(IoT):
-
-自己位置推定的な話と、現実のモノとインターネットを通じて連携できますよという話があります。
-
-> **AR Foundation**
-Unity 内の AR Foundation を使用すると、拡張現実システムを複数のプラットフォームで操作できます。 このパッケージは Unity 開発者にインターフェイスを提供しますが、AR 機能は含まれていません。 ターゲット デバイスで、Unity の公式にサポートされているターゲット プラットフォーム用の個別のパッケージも必要になります。
-> - Android 上の ARCore XR プラグイン
-> - iOS 上の ARKit XR プラグイン
-> - Magic Leap 上の Magic Leap XR プラグイン
-> - HoloLens 上の Windows XR プラグイン
-
-**「ARFoundation + ○○Plugin」** という構成なんですね。
-
-> **AR Anchor Manager script**
-
-デバイスに追跡させたい空間上の点を **アンカー(Anchor)** と呼ぶ。
-それぞれのAnchorに対してAnchorManagerはGameObjectを生成する。
-ARAnchorManagerの [Anchor Prefab]フィールドはコンテンツのためのものではなく、代わりにARFoundationがAnchorを表すGameObjectを新たに作成します。
-
-なるほど...? ちょっとわからないので、手を動かしながら理解していきましょう
-
-(メモ: ここで何ができるかわかりやすい動画や画像を置きたい)
-
-# 前提条件 (Learnページから引用)
+https://docs.microsoft.com/ja-jp/learn/modules/azure-spatial-anchors-tutorials/
 
 - [正しいツール](https://docs.microsoft.com/ja-jp/windows/mixed-reality/develop/install-the-tools)が構成された Windows 10 PC
 - Windows 10 SDK 10.0.18362.0 以降
@@ -140,7 +121,7 @@ Build Settingsを開き以下のように設定する
 
 TextMeshProの重要なリソースをインポートする
 
-- [Window] > [extMeshPro] > [Import TMP Essential Resources] を選択
+- [Window] > [TextMeshPro] > [Import TMP Essential Resources] を選択
 
 ![](/images/hololens-2022-2/2022-02-11-13-43-20.png)
 
@@ -152,12 +133,14 @@ TextMeshProの重要なリソースをインポートする
 
 ![](/images/hololens-2022-2/2022-02-11-13-45-31.png)
 
-ProjectPathを設定。以下のフォルダーを含むディレクトリを選択
+:::message
+ProjectPathを設定は以下のフォルダーを含むディレクトリを選択
 - Assets
 - Packages
 - ProjectSettings
+:::
 
-できたら[Discover Features]を選択。
+できたら **[Discover Features]** を選択。
 
 ![](/images/hololens-2022-2/2022-02-11-13-48-24.png)
 
@@ -174,7 +157,6 @@ Platform Supportの
 を選択して、[Get Features]を選択。
 ExamplesとStandard Assetsは必須でないかもしれないが、不安なので追加。
 
-![](/images/hololens-2022-2/2022-02-11-13-54-31.png)
 ![](/images/hololens-2022-2/2022-02-12-16-33-44.png)
 
 そのまま[Approve]を選択。
@@ -184,9 +166,13 @@ importが始まります。ここでUnityに戻ります。
 
 ![](/images/hololens-2022-2/2022-02-12-16-03-16.png)
 
-[MRTK Project Configurator]のWindowが現れる。出ない場合は
+[MRTK Project Configurator]のWindowが現れる。
 
-- [Mixed Reality] > [Toolkit] > [Utilities] > [Configure Project for MRTK]を選択
+:::message
+[MRTK Project Configurator]のWindowが出ない場合は
+Unityメニューから[Mixed Reality] > [Toolkit] > [Utilities] > [Configure Project for MRTK]を選択
+:::
+
 
 今回は[Unity OpenXR Plugin]を選択。
 
@@ -303,10 +289,15 @@ Create Spatial Anchorsのページに移動します。
 
 ![](/images/hololens-2022-2/2022-02-11-12-59-04.png)
 
-以下の情報をコピー
+以下の情報をコピーしてメモ帳などに控えておく (後で使用します)
 - AccountID
 - Account Domain
 - Access KeysのPrimary key
+
+
+::: message alert
+Primary keyなどは他人に公開しないようにする
+:::
 
 ![](/images/hololens-2022-2/2022-02-11-13-02-51.png)
 
@@ -347,9 +338,9 @@ Microsoft Mixed Reality Feature Tool.exeを開く。
 
 ![](/images/hololens-2022-2/2022-02-12-22-36-54.png)
 
-https://github.com/microsoft/MixedRealityLearning/releases
 
-から、チュートリアル用のunitypackageを2つダウンロードしimportする。
+
+[こちらのページ](https://github.com/microsoft/MixedRealityLearning/releases)から、チュートリアル用のunitypackageを2つダウンロードしimportする。
 今回は
 
 - [MRTK.HoloLens2.Unity.Tutorials.Assets.GettingStarted.2.7.2.unitypackage](https://github.com/microsoft/MixedRealityLearning/releases/download/getting-started-v2.7.2/MRTK.HoloLens2.Unity.Tutorials.Assets.GettingStarted.2.7.2.unitypackage)
@@ -505,7 +496,10 @@ Hierarchyビューで[ButtonParent]オブジェクトを展開し、[SaveAzureAn
 
 ![](/images/hololens-2022-2/2022-02-13-01-31-11.png)
 
-# モバイル(iOS,Android)用の設定
+# モバイル(iOS,Android)共通の設定
+
+ここまではHoloLens用の設定でした。
+この章から、モバイル(iOS,Android)共通の設定の設定を説明します。後の章ではiOS,Android固有の設定の説明をします。
 
 ## 手順
 
@@ -594,7 +588,12 @@ dependencies {
 
 ![](/images/hololens-2022-2/2022-02-13-03-15-55.png)
 
-ここまで来たら、PCとAndroidをUSBでつないでBuild And Run
+ここまで来たら、PCとAndroidをUSBでつないで **Build And Run**
+
+## 参考記事
+
+https://docs.microsoft.com/ja-jp/azure/spatial-anchors/how-tos/setup-unity-project?tabs=xr-plugin-framework%2Cunity-2020%2Cunity-package-web-ui
+
 
 # iOS向けビルドの設定
 
@@ -632,15 +631,42 @@ Unityメニューで[File]>[Build Settings]を選択して、プラットフォ�
 
 ここまで来たらXCode向けにBuild
 
-# Azure Spatial Anchorsの試し方 (困っているポイント)
+# Azure Spatial Anchorsの試し方
+
+https://docs.microsoft.com/ja-jp/learn/modules/azure-spatial-anchors-tutorials/3-exercise-get-started-with-azure-spatial-anchors
+
+こちらの記事か、ビルドしたアプリの指示に従って動作させます。
+
+1. Cubeを別の場所に移動します
+1. Start Azure Sessionを押す
+1. Create Azure Anchorを押す (Cubeの場所にAnchorを作成します)
+1. Stop Azure Sessionを押す
+1. Remove Local Anchorを押す (これにより、ユーザーはCubeを移動できるようになる)
+1. Cubeを別の場所に移動させる
+1. Start Azure Sessionを押す
+1. Find Azure Anchorを押す ** (これで3.の位置にCubeが瞬間移動すれば成功) ** 
+1. Delete Azure Anchorを押す
+1. Stop Azure Sessionを押す
+
+すると、iOSとAndroidでは想定通りに動作します。
+
+https://youtu.be/xjDg0AYUPYo
+
+# 今後の課題
+
+一番やりたいのは、こちらのチュートリアルの挙動です。
 
 https://docs.microsoft.com/ja-jp/learn/modules/azure-spatial-anchors-tutorials/5-exercise-save-retrieve-share-azure-spatial-anchors
 
-こちらの記事の下の方の
+つまりこれです。
+
+![](https://docs.microsoft.com/ja-jp/azure/spatial-anchors/media/cross-platform.png)
+
+チュートリアルの下の方に書かれていることを実行しようとしました。
 
 > 更新されたアプリを 2 つの HoloLens デバイスにビルドすると、Azure Anchor ID を共有することで、空間的な位置合わせを実現できるようになります。 これをテストするには、次の手順を実行します。
 
-実際はHoloLensの2つ目のデバイスを持っていないため、iPhoneで代用しています。
+実際はHoloLensの2つ目のデバイスを持っていないため、iPhoneで代用しています。次のような処理になります。
 
 1. HoloLensで次のようにします。Rover Explorer を目的の場所に移動します。
 2. HoloLensで: Azure セッションを開始します。
@@ -652,3 +678,55 @@ https://docs.microsoft.com/ja-jp/learn/modules/azure-spatial-anchors-tutorials/5
 8. iPhoneで: Azure アンカーを検索します (手順 3 の場所に Rover Explorer を配置します)。
 
 ここで6.のネットワークから共有アンカー取得ができない...というところで詰まっています。
+
+4の処理のコードを見ると、グローバルIPにAnchorIDをアップロードする処理が書かれているものの、実行すると該当のIPアドレス先のファイルにはAnchorIDが記されていない状態でした。
+
+いずれにしても、AnchorIDを誰にでも見れる場所にアップロードするのは良くないと思うので、次回はAnchorIDを安全に共有する方法も含めて調査します。
+
+また、HoloLensではiOS,Androidで成功したような「Find Azure Anchor」時に元の位置に戻らない現象についても、引き続き調査します。
+
+```csharp:AnchorModuleScript.cs
+  public void ShareAzureAnchorIdToNetwork()
+    {
+        Debug.Log("\nAnchorModuleScript.ShareAzureAnchorID()");
+
+        string filename = "SharedAzureAnchorID." + publicSharingPin;
+        string path = Application.persistentDataPath;
+
+#if WINDOWS_UWP
+        StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+        path = storageFolder.Path + "/";           
+#endif
+
+        string filePath = Path.Combine(path, filename);
+        File.WriteAllText(filePath, currentAzureAnchorID);
+
+        Debug.Log($"Current Azure anchor ID '{currentAzureAnchorID}' successfully saved to path '{filePath}'");
+
+        try
+        {
+            var client = new RestClient("http://167.99.111.15:8090");
+
+            Debug.Log($"Connecting to network client '{client}'... please wait...");
+
+            var request = new RestRequest("/uploadFile.php", Method.POST);
+            request.AddHeader("Accept", "application/json");
+            request.AddHeader("Content-Type", "multipart/form-data");
+            request.AddFile("the_file", filePath);
+            request.AddParameter("replace_file", 1);  // Only needed if you want to upload a static file
+
+            var httpResponse = client.Execute(request);
+
+            Debug.Log("Uploading file... please wait...");
+
+            string json = httpResponse.Content.ToString();
+        }
+        catch (Exception ex)
+        {
+            Debug.Log(string.Format("Exception: {0}", ex.Message));
+            throw;
+        }
+
+        Debug.Log($"Current Azure anchor ID '{currentAzureAnchorID}' shared successfully");
+    }
+```
