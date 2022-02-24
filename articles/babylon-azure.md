@@ -114,6 +114,22 @@ index.htmlは次のように実装します。
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Babylon Sample</title>
 </head>
+<style type="text/css">
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    #renderCanvas {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+    }
+</style>
 
 <body>
 
