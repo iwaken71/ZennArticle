@@ -1,5 +1,5 @@
 ---
-title: "Babylon.jsで3DViewerをAzureに乗せる"
+title: "【Babylon.js×Azure Storage】LiDARスキャンした3DオブジェクトをWebサイトに表示させるまで"
 emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Azure","BabylonJS","webpack"]
@@ -16,6 +16,9 @@ published: false
 |OS|Windows10 Home|
 |Node.js|v14.15.4|
 |babylonjs|5.0.0-beta.11|
+|webpack|5.69.1|
+|webpack-cli|4.9.2|
+|webpack-dev-server|4.7.4|
 
 # Babylon.js × Webpackの準備
 
@@ -78,23 +81,29 @@ $ npm i babylonjs-materials@preview
 
 ```
 webpack.config.jsに次のように書き込みます。
+webpack-dev-serverのバージョンがv3かv4でdevServerの書き方が変わるようです。
+筆者はv4なので、以下のような書き方にしました。
+
 ```js:webpack.config.js
+const path = require('path');
+
 module.exports = {
     // モード値を production に設定すると最適化された状態で、
     // development に設定するとソースマップ有効でJSファイルが出力される
     mode: "development",
 
     // ローカル開発用環境を立ち上げる
-    // 実行時にブラウザが自動的に localhost を開く
+    // open:ture 実行時にブラウザが自動的に localhost を開く
+    // webpack-dev-serverのv4の書き方 contentBaseオプションの代わりにstatic以下に書く。
+    
     devServer: {
-        contentBase: "dist",
+        static: {
+            directory: path.join(__dirname, "dist"),
+        },
         open: true
     },
 };
 ```
-
-
-
 index.htmlは次のように実装します。
 
 ```html:index.html
@@ -298,3 +307,4 @@ https://docs.microsoft.com/ja-jp/azure/storage/blobs/storage-blob-static-website
 https://docs.microsoft.com/ja-jp/azure/storage/common/storage-account-create?tabs=azure-portal
 https://docs.microsoft.com/ja-jp/azure/storage/blobs/storage-blob-static-website-how-to?tabs=azure-portal
 https://doc.babylonjs.com/divingDeeper/materials/using/HDREnvironment
+https://qiita.com/chocomint_t/items/4bc57945bce081922582
