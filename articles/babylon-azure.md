@@ -2,8 +2,8 @@
 title: "【Babylon.js×Azure Storage】LiDARスキャンした3Dオブジェクトを自作Webサイトに表示させるまで一気通貫"
 emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["Azure","BabylonJS","webpack"]
-published: false
+topics: ["Azure","BabylonJS","webpack","JavaScript","Web"]
+published: true
 ---
 
 # 概要 
