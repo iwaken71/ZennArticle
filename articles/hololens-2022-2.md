@@ -152,7 +152,7 @@ Mixed Reality Toolkitの
 
 Platform Supportの
 
-- Miced Reality OpenXR Plugin 1.3.0
+- Mixed Reality OpenXR Plugin 1.3.0
 
 を選択して、[Get Features]を選択。
 ExamplesとStandard Assetsは必須でないかもしれないが、不安なので追加。
