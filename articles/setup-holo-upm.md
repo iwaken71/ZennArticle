@@ -3,7 +3,7 @@ title: "【HoloLens2×Unity】UPMでMRTKとMixed Reality OpenXRをインスト�
 emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Unity","HoloLens","Microsoft"]
-published: false
+published: true
 ---
 # 背景
 2022年現在、UnityによるHoloLens2開発では
