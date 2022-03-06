@@ -1,9 +1,9 @@
 ---
-title: "【HoloLens2×UE4.27】Microsoft OpenXRによるビルドを試してみた"
-emoji: "👏"
+title: "【HoloLens2×UE4.27】Microsoft OpenXRによるHoloLensビルドを試してみた"
+emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [HoloLens,UnrealEngine,Microsoft]
-published: false
+published: true
 ---
 # はじめに
 
@@ -11,6 +11,8 @@ published: false
 Unreal Engine(以下UE)のバージョン4.27でのHoloLens開発をするためにドキュメントをみたところ、**Microsoft OpenXR プラグイン**に対応と書かれておりました。
 
 この記事では、**Microsoft OpenXR プラグイン**でのHoloLens向けビルドするまでの動作を確認します。
+
+ドキュメントを確認したい方はこちら
 
 https://docs.microsoft.com/ja-jp/windows/mixed-reality/develop/unreal/unreal-development-overview?tabs=ue426%2Cmrtk%2Casa%2CD365
 
@@ -53,6 +55,8 @@ https://www.unrealengine.com/marketplace/ja/product/ef8930ca860148c498b46887da19
 - Secondary View Configuration (requires 4.26.2+)
 
 といった機能がOpenXRの拡張として使用することができるようになります。
+
+この後の作業でわかるのですが、[Microsoft Windows Mixed Reality]Pluginを代替するもの、と思うと理解しやすいかもです。
 
 # 筆者の環境
 
@@ -115,6 +119,12 @@ UnrealEngineのMarketPlace(UnityでいうAssetStoreみたいなもの)から[Mic
 ![](https://storage.googleapis.com/zenn-user-upload/a81cac9d9bf5-20220307.gif)
 
 # 注意点
+
+:::message
+[Microsoft OpenXR]を有効にすると以下のPluginが自動的に有効になります。
+[OpenXR],[OpenXREyeTracker],[OpenXRHandTracking],[OpenXRMsftHandInteraction],[XRVisualization],[HoloLens]
+:::
+
 :::message alert
 [Microsoft Windows Mixed Reality]と[Microsoft OpenXR]2つともチェックを入れた状態で、HoloLens向けにビルドするとエラーが出ることを確認
 :::
