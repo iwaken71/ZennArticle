@@ -113,6 +113,5 @@ npm run build
 
 # 参考資料
 
-
 - [これからはじめるVue.js 3実践入門   山田 祥寛](https://www.amazon.co.jp/dp/B09RSPR453/ref=cm_sw_r_tw_dp_H0FD2GM8J1SZKAARFNM2)
 - [How to use BabylonJS with Vue](https://doc.babylonjs.com/extensions/Babylon.js+ExternalLibraries/BabylonJS_and_Vue/BabylonJS_and_Vue_1)
