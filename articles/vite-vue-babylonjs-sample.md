@@ -1,5 +1,5 @@
 ---
-title: "Vite+Vue.js+Babylon.jsの最小限構成を作る"
+title: "Vite+Vue 3+Babylon.jsの最小限構成を作る"
 emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["babylonjs","vite","vue"]
@@ -16,6 +16,9 @@ Vue.jsとBabylon.jsのサンプルを作ろうとしたときに、Web開発に�
 |項目|バージョン|
 |---|---|
 |Node.js|v16.14.0|
+|vue|3.2.25|
+|vite|2.8.6|
+|babylonjs/core|5.0.0-rc.13|
 
 # 今回のアウトプット
 
