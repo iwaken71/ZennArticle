@@ -1,5 +1,5 @@
 ---
-title: "デプロイしたZennの記事をGithubから「直接」編集・更新する"
+title: "デプロイしたZennの記事をGithubからVSCodeを開き「直接」編集・更新する"
 emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Zenn","Github","VSCode"]
@@ -11,6 +11,13 @@ published: true
 Github連携しているZennの記事を「Githubにデプロイした後ちょっとした編集をしたい」といった時に、ローカルのファイルをブランチ切ってプッシュしてプルリク送るのは面倒です。
 
 そこで、Github上で「直接」編集して更新する方法を共有します。
+
+## 前提
+
+- Zennの記事をGithub連携している
+
+こちらを参考にしましょう。
+https://zenn.dev/zenn/articles/connect-to-github
 
 ## 今回試すこと
 
