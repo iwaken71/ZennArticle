@@ -6,7 +6,7 @@ topics: ["babylonjs","vite","vue"]
 published: true
 ---
 
-# 背景
+# はじめに
 
 Vue.jsとBabylon.jsのサンプルを作ろうとしたときに、Web開発に慣れていないとどう作ればいいかわからないものです。
 今回は最小限の構成を作るまでの手順を紹介します。
