@@ -92,7 +92,7 @@ npm install @babylonjs/core@preview
 
 @[gist](https://gist.github.com/iwaken71/fa18b81ca5208bc0c8c01e0998036bb7)
 
-次に `.src/App.vue`を開きます。そして、`HellowWorld.vue`コンポーネントを削除して、`BabylonScene.vue`コンポーネントを追加します。以下のように書きます。
+次に `.src/App.vue`を開きます。そして、`HelloWorld.vue`コンポーネントを削除して、`BabylonScene.vue`コンポーネントを追加します。以下のように書きます。
 
 @[gist](https://gist.github.com/iwaken71/bf27c3e7a487a9ea1347c07019348030)
 
