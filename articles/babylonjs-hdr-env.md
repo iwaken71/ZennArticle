@@ -1,5 +1,5 @@
 ---
-title: "Babylon.jsでPBR向けHDR環境の扱い方をご紹介 (ドキュメント和訳)"
+title: "Babylon.jsでPBR向けHDR環境の扱い方をご紹介 【ドキュメント和訳+α】"
 emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["BabylonJS","JavaScript","HDR"]
