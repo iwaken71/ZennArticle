@@ -1,5 +1,5 @@
 {
-    "pasteImage.path": "${currentFileDir}/../images/hololens-2022-2",
+    "pasteImage.path": "${currentFileDir}/../images/babylon",
     "pasteImage.showFilePathConfirmInputBox": true,
     "pasteImage.basePath": "${currentFileDir}/..",
     "pasteImage.insertPattern": "${imageSyntaxPrefix}/${imageFilePath}${imageSyntaxSuffix}",
