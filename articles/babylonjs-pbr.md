@@ -1,5 +1,5 @@
 ---
-title: "Babylon.jsにおけるPhysically Based Rendering(PBR)の扱い方【ドキュメント和訳】"
+title: "Babylon.jsにおけるPhysically Based Rendering(PBR)の扱い方【ドキュメント和訳+α】"
 emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["BabylonJS","PBR"]
