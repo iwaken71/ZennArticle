@@ -3,7 +3,7 @@ title: "Babylon.jsでPBR向けHDR環境の扱い方をご紹介 (ドキュメン
 emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["BabylonJS","JavaScript","HDR"]
-published: false
+published: true
 ---
 
 # はじめに
