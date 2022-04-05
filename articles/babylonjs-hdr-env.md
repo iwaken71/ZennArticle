@@ -7,6 +7,7 @@ published: true
 ---
 
 # はじめに
+[Babylon.js](https://www.babylonjs.com/)は**ブラウザ上でリアルタイムに動作する3Dレンダリングフレームワーク**の1つです。OSSとなりますので、誰でも無料で使用することができます。
 この記事は[Using An HDR Environment For PBR](https://doc.babylonjs.com/divingDeeper/materials/using/HDREnvironment)を参考にし、Babylon.jsにおけるPBR向けHDR環境の扱い方をご紹介します。
 
 この記事では
