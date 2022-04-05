@@ -8,6 +8,7 @@ published: false
 
 # はじめに
 
+[Babylon.js](https://www.babylonjs.com/)は**ブラウザ上でリアルタイムに動作する3Dレンダリングフレームワーク**の1つです。OSSとなりますので、誰でも無料で使用することができます。
 この記事は[Mastering PBR Materials](https://doc.babylonjs.com/divingDeeper/materials/using/masterPBR)を参考に、Babylon.jsにおけるPBR Materialをマスターしようという記事になります。
 
 # 概要
@@ -53,10 +54,95 @@ PBRMetallicRoughnessMaterialから大きなPBRMaterialに切り替えるため�
 |occlusionTextureStrength|ambientTextureStrength|
 
 
-また、光沢に使用するチャンネルをカスタマイズするために、シンプルなマテリアルにセットアップするためには以下のflagを設定する必要があります。
+また、metallicやroughnessに使用するチャンネルをカスタマイズするために、シンプルなマテリアルにセットアップするためには以下のflagを設定する必要があります。
 ```js
 pbr.useRoughnessFromMetallicTextureAlpha = false;
 pbr.useRoughnessFromMetallicTextureGreen = true;
 pbr.useMetallnessFromMetallicTextureBlue = true;
 ```
 
+このようにMetallic SurfacesをPBRでカスタマイズしたコードサンプルが[こちら](https://playground.babylonjs.com/#2FDQT5#1478)です。
+
+![](/images/babylon/2022-04-05-17-14-52.png)
+
+ここまでがMetallicRoughnessからPBRMaterialへ変換するための知識でした。ここからは、利用可能なカスタムオプションを見てみましょう。
+
+|プロパティ名|説明|
+|---|---|
+|**useRoughnessFromMetallicTextureAlpha**|メタリックテクスチャのアルファチャンネルにラフネス情報を含むことができる|
+|**useMetallnessFromMetallicTextureBlue**|メタリックテクスチャのBlueチャンネルにメタリック情報を含むことができる (デフォルトではRedチャンネル)|
+|**useAmbientOcclusionFromMetallicTextureRed**|メタリックテクスチャのRedチャンネルにアンビエントオクルージョン情報を含むことができる|
+|**useAmbientInGrayScale**|ambient textureもしくはmetallic textureのRedチャンネルから、ambient occlusionを読み取るように強制できます|
+
+# SpecularGlossinessからPBRMaterialへ
+
+Specular/GlossinessモードでのPBRMaterialの設定は先程とは違う設定が必要です。
+以下のプロパティはNULL or undefinedにする必要があります。
+
+- metallic
+- roughness
+- metallicTexture
+
+PBRSpecularGlossinessMaterialから立地なPBRMaterialに切り変えるためには、いくつかプロパティの名前も変更する必要があります。
+
+|PBRSpecularGlossinessMaterial|PBRMaterial|
+|---|---|
+|diffuseColor|albedoColor|
+|diffuseTexture|albedoTexture|
+|specularGlossinessTexture|reflectivityTexture|
+|specularColor|reflectivityColor|
+|glossiness|microSurface|
+|normalTexture|bumpTexture|
+|occlusionTexture|ambientTexture|
+|occlusionTextureStrength|ambientTextureStrength|
+
+glossinessに使用するチャンネルをカスタマイズするために、シンプルなMaterialに設定するためには、以下のフラグを追加する必要があります。
+```js
+pbr.useMicroSurfaceFromReflectivityMapAlpha = false;
+```
+
+サンプルコードは[こちら](https://playground.babylonjs.com/#Z1VL3V#8)
+![](/images/babylon/2022-04-05-18-58-16.png)
+
+変換が完了したら、利用可能なカスタムオプションを見ていきます。
+
+|プロパティ名|説明|
+|---|---|
+|**microSurfaceTexture**|separate textureのRチャンネルにglossinessの値を保存することができます|
+|**useAlphaFromAlbedoTexture**|opacity情報をalbedo textureのアルファチャンネルに含むことができます|
+|**useMicroSurfaceFromReflectivityMapAlpha**|the microSurfaceまたはglossinessの情報をreflectivity textureのアルファチャンネルに含むことができます|
+|**useAmbientInGrayScale**|ambient textureもしくはmetallic textureのRedチャンネルから、ambient occlusionを読み取るように強制できます|
+
+
+ここまでが、シンプルなMaterialからPBRMaterialの変換の話でした。
+ここから各項目の設定事項などをご紹介します。
+
+項目としては以下です。
+
+- Opacity
+- Refraction (Back Compat)
+- Sub Surface
+- Translucency
+- Scattering
+- Mask
+- Clear Coat
+- Anisotropy
+- Sheen
+- Normal Map/Parallex
+- LightMaps
+- Image Processing
+- Light Setup
+- Inverse Square Falloff
+- IntensityMode
+- Light Radius
+- Shadows (standard materialとして)
+- Notes
+- Specular Aliasing
+- Environment Irradiance
+- Spherica; Harmonics
+- Irradiance Map
+- Energy Conservation
+- Image Based Lighting: Babylon VS RayTracers
+- How to Debug
+
+# Opacity
