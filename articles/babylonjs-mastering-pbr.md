@@ -1,8 +1,8 @@
 ---
-title: ""
-emoji: "⛳"
+title: "Babylon.jsのPBRをマスターする【ドキュメント和訳+α】"
+emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: []
+topics: ["BabylonJS","PBR","JavaScript"]
 published: false
 ---
 
