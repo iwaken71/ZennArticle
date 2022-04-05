@@ -3,10 +3,11 @@ title: "Babylon.jsにおけるPhysically Based Rendering(PBR)の扱い方【ド�
 emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["BabylonJS","PBR"]
-published: false
+published: true
 ---
 
 # はじめに
+[Babylon.js](https://www.babylonjs.com/)は**ブラウザ上でリアルタイムに動作する3Dレンダリングフレームワーク**の1つです。OSSとなりますので、誰でも無料で使用することができます。
 この記事は[Introduction to Physically Based Rendering](https://doc.babylonjs.com/divingDeeper/materials/using/HDREnvironment)を参考にし、Babylon.jsにおけるPBRの扱い方をご紹介します。
 
 この記事では
