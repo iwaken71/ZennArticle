@@ -58,7 +58,9 @@ scene.createDefaultEnvironment({
 # 環境マップの生成/変換の仕方
 
 ファイル形式と変換ツールと関係は以下になります。最終的に、.ddsまたは.envファイルを目指します。
-![](/images/hololens-2022-2/2022-04-04-19-22-20.png)
+
+
+![](/images/babylon/hdri.png)
 
 ## SandBoxによる圧縮された環境マップの作成
 
