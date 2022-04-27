@@ -2,7 +2,7 @@
 title: "glTF ExporterでUnreal EngineからglTFデータ・glbデータをエクスポートする方法"
 emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["UneralEngine","glTF"]
+topics: ["UnrealEngine","glTF"]
 published: true
 ---
 
