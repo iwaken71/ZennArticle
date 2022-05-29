@@ -1,9 +1,9 @@
 ---
-title: "Babylon.jsでWebXR向けにHand Trackingの実装したが動かないときに見るブラウザ設定"
+title: "Babylon.jsのWebXR向けHand Tracking実装が動かないときに見るべきブラウザ設定"
 emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["BabylonJS","AR","VR"]
-published: false
+published: true
 ---
 
 # 始めに
@@ -71,6 +71,13 @@ WebXR実装の部分のうち、Hand Trackingの実装部分をご紹介しま�
 
 ブラウザの設定をすることでハンドラッキングが有効になりました！
 2回目以降は設定せずともハンドトラッキングを使えるようになります。
+
+# 告知
+
+Babylon.jsの日本コミュニティを主催しています。
+Babylon.jsを学びたい人であれば誰でも参加OKですので、気軽に参加してください！
+
+https://note.com/iwaken71/n/n0fd66c814fd2
 
 # 参考ページ
 
