@@ -19,13 +19,6 @@ https://twitter.com/iwaken71/status/1535162734127759361?s=20&t=Upe2YGiHliUwDhIzL
 
 
 こちらはGithubに公開されていますので、サクッと試すための手順をご紹介します。
-
-# 手順
-
-- githubからclone
-- Profile設定
-- ビルド
-
 # 筆者の環境
 
 - Windows10
@@ -35,7 +28,26 @@ https://twitter.com/iwaken71/status/1535162734127759361?s=20&t=Upe2YGiHliUwDhIzL
 :::message
 Toolのインストール
 :::
+# 手順
 
+- githubからclone
+- Profile設定
+- ビルド
+# githubからclone
+
+https://github.com/microsoft/MixedRealityToolkit-Unity/tree/mrtk3
+
+今回こちらのレポジトリをcloneします。
+
+```
+git clone git@github.com:microsoft/MixedRealityToolkit-Unity.git
+```
+
+UnityのSampleプロジェクトは
+
+`MixedRealityToolkit-Unity/UnityProjects/MRTKDevTemplate`
+
+にありますので、Unityで開きます (Unity2020.3.35f1がオススメです)
 
 # 参考ページ
 
