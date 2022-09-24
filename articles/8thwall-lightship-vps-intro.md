@@ -1,5 +1,5 @@
 ---
-title: "8thWallのLightship VPS for Webを旅行先で試してみた"
+title: "8thWallのLightship VPS for Webを静岡で試してみた"
 emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["WebAR","VPS","AR"]
@@ -27,7 +27,9 @@ ARアプリはWebARと比べて、リッチな表現ができる一方で、手�
 
 というところで、WebARで有名な8thWall社を、ポケモンGOのNiantic社が買収したことで、WebARでのVPSが早速実現できたというストーリーなのです。
 
-この記事では、公開されたブログや[ドキュメント](https://www.8thwall.com/docs/web/#lightship-vps)をもとに、8thWallのLightship VPS for Web (以下Lightship VPS)で何ができるのか紹介しつつ、実際触ってみた手順についてご紹介します。(旅行先の静岡で実践しました)
+この記事では、公開されたブログや[ドキュメント](https://www.8thwall.com/docs/web/#lightship-vps)をもとに、8thWallのLightship VPS for Web (以下Lightship VPS)で何ができるのか紹介しつつ、実際触ってみた手順についてご紹介します。開発合宿先の静岡で実践しました。日本最速かもしれません (一緒に旅行した中村君も同じ日に行いました)
+
+https://twitter.com/tsukuba22_mr1/status/1573549108425818113?s=20&t=Qx4s4dQIhuQcqObfkLESnQ
 
 ## 注意
 
@@ -222,7 +224,7 @@ https://twitter.com/iwaken71/status/1573752517137088514?s=20&t=6ZXHVRoB_agIBLrZt
 # 参考
 
 - https://www.8thwall.com/docs/web/#lightship-vps
-
+- https://zenn.dev/iwaken71/scraps/d789840fe9af87
 
 
 
