@@ -3,7 +3,7 @@ title: "Babylon.jsで背景動画と3Dモデルを合成してスクリーンシ
 emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["BabylonJS"]
-published: false
+published: true
 ---
 # 始めに
 [Babylon.js](https://www.babylonjs.com/)はブラウザ上でリアルタイムに動作する3Dレンダリングフレームワークの1つです。OSSとなりますので、誰でも無料で使用することができます。
@@ -68,39 +68,41 @@ function createBGCamera(scene){
 ```js
 function createCamera(scene){
     var cameraB = new BABYLON.ArcRotateCamera("cameraB",Math.PI/2,Math.PI/2,0.04,new BABYLON.Vector3(0, 0, 0), scene);
-    cameraB.attachControl(canvas, true);
-    cameraB.minZ = 0.01;
+    cameraB.attachControl(canvas, true);//インタラクティブに操作できるようになります。
+    cameraB.minZ = 0.01; //nearを0.01まで描画
     scene.clearColor = new BABYLON.Color4(1,1,1,0); //背景透過
     return cameraB;
 }
 ```
 
+`cameraB.minZ = 0.01;`により近くを描画できるようになります。
+
 # 合成の実装
 
+`scene.activeCameras.push`でカメラを追加することが後に合成絵をスクリーンショットするのに重要です。
 ```js
 const createScene = async function () {
 
     var scene = new BABYLON.Scene(engine);
-
 
     var cameraA = createBGCamera(scene);
     var cameraB = createCamera(scene);
 
     scene.activeCameras.push(cameraA);
     scene.activeCameras.push(cameraB);
-
+    
+    // Lightの追加
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
-    light.intensity = 1.5;
-    light.groundColor = new BABYLON.Color3(0.3137254901960784,0.3137254901960784,0.3137254901960784);
 
+    // 3DモデルのLoad
     await BABYLON.SceneLoader.ImportMeshAsync("","https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoomBox/glTF-Binary/", "BoomBox.glb", scene);
-    //await createUI(scene);
     return scene;
 }
 ```
 
 # スクリーンショットの実装
 
+カメラの設定を`scene.activeCamera`にします。
 ```js
 document.querySelector("#download").addEventListener("click", ()=>{
     BABYLON.Tools.CreateScreenshot(engine,scene.activeCamera,{width:canvas.width,height:canvas.height});
@@ -108,3 +110,10 @@ document.querySelector("#download").addEventListener("click", ()=>{
 ```
 
 
+# 参考記事
+
+- Babylon.js Doc
+  - [Video As A Texture](https://doc.babylonjs.com/features/featuresDeepDive/materials/using/videoTexture)
+  - [Class Camera](https://doc.babylonjs.com/typedoc/classes/BABYLON.Camera#ORTHOGRAPHIC_CAMERA)
+  - [Layer Masks and Multi-Cam Textures](https://doc.babylonjs.com/features/featuresDeepDive/cameras/layerMasksAndMultiCam)
+  - [Render Scenes To .png Files](https://doc.babylonjs.com/features/featuresDeepDive/scene/renderToPNG)
