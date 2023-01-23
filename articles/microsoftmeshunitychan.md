@@ -4,6 +4,7 @@ emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["HoloLens","MixedReality","Microsoft"]
 published: true
+publication_name: "iwakenlab_book"
 ---
 # 今日のゴール
 

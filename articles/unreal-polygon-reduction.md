@@ -4,6 +4,7 @@ emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["UnrealEngine"]
 published: true
+publication_name: "iwakenlab_book"
 ---
 
 [Uneral Engine](https://www.unrealengine.com/ja/)は、主にゲーム向けのリアルタイム3D制作ツールになります。最近はゲームだけでなく、映像制作や建築にも使われるようになってきました。

@@ -4,6 +4,7 @@ emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Unity","HoloLens","Azure"]
 published: true
+publication_name: "iwakenlab_book"
 ---
 # 概要
 Azure Spatial Anchorsは、空間を認識した位置固定や複数デバイスでのアンカー共有を可能にするMicrosoftが提供するサービスです。

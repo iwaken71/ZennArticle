@@ -4,6 +4,7 @@ emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Unity","HoloLens","CSharp","VisualStudio","Microsoft"]
 published: true
+publication_name: "iwakenlab_book"
 ---
 
 # ゴールのアウトプット

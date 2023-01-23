@@ -4,6 +4,7 @@ emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Unity","HoloLens","Microsoft"]
 published: true
+publication_name: "iwakenlab_book"
 ---
 # 背景
 2022年現在、UnityによるHoloLens2開発では

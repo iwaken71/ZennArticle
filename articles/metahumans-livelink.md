@@ -4,6 +4,7 @@ emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["UnrealEngine","DigitalHuman","MetaHumans"]
 published: true
+publication_name: "iwakenlab_book"
 ---
 # この記事のゴール
 Unreal EngineにからリリースされたMetaHumansのデジタルヒューマンに対して、iPhoneのフェイシャルキャプチャを用いてリアルタイムで顔を動かします。
