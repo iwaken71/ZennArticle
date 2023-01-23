@@ -4,6 +4,7 @@ emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Azure","BabylonJS","webpack","JavaScript","Web"]
 published: true
+publication_name: "iwakenlab_book"
 ---
 
 # 概要 
