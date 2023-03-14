@@ -3,7 +3,7 @@ title: "UnityからHoloLensへのビルド。これでよかったんや...!"
 emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Unity","HoloLens"]
-published: false
+published: true
 ---
 
 
