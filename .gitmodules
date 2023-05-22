@@ -1,0 +1,3 @@
+[submodule "BabylonJSDocumentation"]
+	path = BabylonJSDocumentation
+	url = git@github.com:BabylonJS/Documentation.git
