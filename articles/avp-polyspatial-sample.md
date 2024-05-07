@@ -15,6 +15,9 @@ published: true
 実装方法については概要のみの紹介とさせていただきます。
 Apple Vision Proでの実機での動作も共有します。
 
+![](/images/gif/mixedreality.gif)
+*Mixed RealityのSample*
+
 # 開発環境
 
 私が検証した開発閑居はこちらです。
