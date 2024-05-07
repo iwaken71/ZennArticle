@@ -20,6 +20,6 @@
   },
   "homepage": "https://github.com/iwaken71/ZennBook#readme",
   "dependencies": {
-    "zenn-cli": "^0.1.107"
+    "zenn-cli": "^0.1.153"
   }
 }
