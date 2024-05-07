@@ -2,8 +2,8 @@
 title: "Let's Apple Vision Pro! Sampleから学ぶPolySpatialのXR機能紹介"
 emoji: "👓"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["Unity","AppleVisionPro"]
-published: false
+topics: ["Unity","AppleVisionPro","visionOS"]
+published: true
 ---
 
 こんにちは、サイバーエージェントのXR研究所の[イワケン](https://twitter.com/iwaken71)です。
