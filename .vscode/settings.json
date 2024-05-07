@@ -1,5 +1,5 @@
 {
-    "pasteImage.path": "${currentFileDir}/../images/babylon",
+    "pasteImage.path": "${currentFileDir}/../images/avp",
     "pasteImage.showFilePathConfirmInputBox": true,
     "pasteImage.basePath": "${currentFileDir}/..",
     "pasteImage.insertPattern": "${imageSyntaxPrefix}/${imageFilePath}${imageSyntaxSuffix}",
