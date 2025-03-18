@@ -3,7 +3,7 @@ title: "Clineを活用したUnityプログラミングの注意点とベスト�
 emoji: "🤖"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Unity", "Cline", "AI", "CSharp", "GameDev"]
-published: false
+published: true
 publication_name: "iwakenlab_book"
 ---
 
