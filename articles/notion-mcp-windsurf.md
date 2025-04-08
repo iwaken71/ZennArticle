@@ -3,7 +3,7 @@ title: "Notion MCPをwindsurfから実行する"
 emoji: "🌊"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Notion", "MCP", "windsurf", "API", "自動化"]
-published: false # まずは下書きとして設定
+published: true # 公開設定に変更
 ---
 
 ## はじめに
