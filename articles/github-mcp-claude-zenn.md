@@ -3,7 +3,7 @@ title: "GitHub MCPサーバーを使ってClaude DesktopからZenn記事を公�
 emoji: "🚀"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Claude", "GitHub", "MCP", "Zenn", "AIアシスタント"]
-published: false
+published: true
 ---
 
 ## はじめに
