@@ -6,6 +6,10 @@ topics: ["Claude", "AI", "CLI", "開発ツール"]
 published: true
 ---
 # 🎨 Claude Codeの設定とカスタマイズ
+こんにちは、イワケンです。
+Claude Codeの設定についてまとめました。
+
+**引用元:** [公式ドキュメント（日本語版）](https://docs.anthropic.com/ja/docs/claude-code/settings)
 
 Claude Codeはニーズに合わせて動作を設定するための様々な設定を提供しています。ターミナルで`claude config`を実行するか、インタラクティブREPLを使用する際に`/config`コマンドを実行することでClaude Codeを設定できます。
 

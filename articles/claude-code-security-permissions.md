@@ -7,6 +7,9 @@ published: true
 ---
 
 # 🔒 権限とセキュリティの管理
+こんにちは、イワケンです。
+Claude Codeの権限とセキュリティについてまとめました。
+**引用元:** [公式ドキュメント（日本語版）](https://docs.anthropic.com/ja/docs/claude-code/security)
 
 Claude Codeは、パワーと安全性のバランスを取るために階層化された権限システムを使用しています：
 
