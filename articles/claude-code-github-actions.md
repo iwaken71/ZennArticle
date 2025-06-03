@@ -3,7 +3,7 @@ title: "Claude Code GitHub Actions - AIを活用したGitHub自動化ガイド"
 emoji: "🤖"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["claude", "githubactions", "ai", "automation", "cicd"]
-published: false
+published: true
 ---
 
 # Claude Code GitHub Actions
