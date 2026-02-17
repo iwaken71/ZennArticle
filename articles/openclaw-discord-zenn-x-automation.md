@@ -3,7 +3,7 @@ title: "OpenClaw で Zenn 記事公開 → X 拡散を完全自動化する"
 emoji: "🤖"
 type: "tech"
 topics: ["OpenClaw", "Zenn", "X", "自動化", "GitHub"]
-published: false
+published: true
 publication_name: "iwakenlab_book"
 ---
 
