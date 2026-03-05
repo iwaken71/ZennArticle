@@ -12,9 +12,17 @@ published: true
 
 > **OSS 化の範囲について**: エンジンフレームワーク（MIT ライセンス）と XR Extras、Image Target CLI はオープンソースですが、**SLAM モジュール（`xr-slam.js`）はバイナリ配布のみ**であり、ソースコードは非公開です。
 
-これにより、**API キーなし・Console なし・Authorized Domains なし**で、8th Wall の AR 機能を完全にセルフホストできるようになりました。
+これにより、無料で高精度のWebARのImage Trackingを使えるようになりました。
 
-ざっくりいうと、無料で高精度のWebARのImage Trackingを使えるようになったということです。
+本記事では、8th Wall OSS × three.js で Self-Host Image Tracking サンプルを動かすまでの手順を解説します。
+
+### 完成したもの
+
+https://x.com/iwaken71/status/2029401132058218786
+
+自分のアイコンの画像をスマホカメラで映すと、アイコン Cube が出てくる AR 体験です。
+
+今回、Cubeの演出の実装に関しては割愛しています。
 
 ### この記事のポジション
 
@@ -29,19 +37,11 @@ published: true
 8thWall OSS 活用のサンプルプロジェクトを作るに当たって、AIに雑にやらせるだけでは達成しにくいポイントを以下にまとめます。
 
 1. **サンプルプロジェクトのコピーから始める** — ゼロから書くのではなく、[8thwall/web](https://github.com/8thwall/web) リポジトリのサンプルをコピーして土台にする。
-2. トラッキングする画像の登録するために、 `npx @8thwall/image-target-cli@latest` を使う** — Console へのアップロードは不要になり、ローカルで JSON を生成する
+2. トラッキングする画像の登録するために、 `npx @8thwall/image-target-cli@latest` を使う — Console へのアップロードは不要になり、ローカルで JSON を生成する
 3. **コピーしたサンプルに対して Engine 移行作業が必要** — CDN 参照の削除、API キーの除去、`imageTargetData` の fetch 追加など、コードの書き換えが発生する
 4. スマホで動作確認するために、httpsサーバーを立てて動作させる必要がある
 
 ここらへんを理解しておくと、ご自身でAIコーディングするときにも実現しやすいかと思います。
-
-### 完成したもの
-
-https://x.com/iwaken71/status/2029401132058218786
-
-自分のアイコンの画像をスマホカメラで映すと、アイコン Cube が出てくる AR 体験です。
-
-今回、Cubeの演出の実装に関しては割愛しています。
 
 ## 前提環境
 
