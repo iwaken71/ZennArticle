@@ -112,19 +112,24 @@ Console が廃止された今、このままでは動きません。ここから
 
 ## Step 2: Engine Binary のダウンロード
 
-[8thwall/engine の Releases ページ](https://github.com/8thwall/engine/releases)から最新の `xr-standalone.zip` をダウンロードし、プロジェクト内に展開します。
+[8thwall/engine](https://github.com/8thwall/engine) リポジトリから `xr-standalone.zip` をダウンロードし、プロジェクト内に展開します。
+
+このファイルは **Git LFS** で管理されており、Releases ページは存在しません。`git clone` でリポジトリごと取得するのが確実です。
 
 ```bash
-# Releases ページから最新版をダウンロード（URL はリリースごとに異なる場合があります）
-curl -L https://github.com/8thwall/engine/releases/latest/download/xr-standalone.zip \
-  -o xr-standalone.zip
+# 1. git-lfs のインストール（未インストールの場合）
+brew install git-lfs
+git lfs install
 
-# プロジェクトの external/xr/ に展開
+# 2. リポジトリをクローン（LFS ファイルも自動ダウンロード）
+git clone --depth 1 https://github.com/8thwall/engine.git /tmp/8thwall-engine
+
+# 3. プロジェクトの external/xr/ に展開
 mkdir -p external/xr
-unzip xr-standalone.zip -d external/xr
+unzip /tmp/8thwall-engine/xr-standalone.zip -d external/xr
 ```
 
-> **補足**: `curl -L` は GitHub のリダイレクトに追従します。ダウンロードした `xr-standalone.zip` のファイル名を `-o` で明示することで、`unzip` コマンドのファイル名と一致させています。Releases ページの URL 形式は変わる場合があるため、うまくいかない場合は Releases ページを直接確認してダウンロードしてください。
+> **補足**: `git-lfs` がインストールされていない状態でクローンすると、`xr-standalone.zip` が LFS ポインタファイル（小さなテキスト）になります。その場合は `cd /tmp/8thwall-engine && git lfs pull` を実行すると実ファイルに差し替わります。`git-lfs` を使わずに ZIP だけ取得したい場合は `curl -L https://media.githubusercontent.com/media/8thwall/engine/main/xr-standalone.zip -o xr-standalone.zip` でも取得できます。
 
 展開後のディレクトリ構造:
 
