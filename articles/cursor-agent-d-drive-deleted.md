@@ -17,7 +17,7 @@ published: true
 
 ## 何が起きたか
 
-2026 年 7 月 13 日の深夜 2 時頃、Cursor で作業中にエージェント(Agent / Composer)へこう依頼しました。
+2026 年 7 月 13 日の深夜 2 時頃、Cursor で作業中にエージェント(Agent / Fable, Composer)へこう依頼しました。
 
 > 「不要なブランチを整理して」
 
