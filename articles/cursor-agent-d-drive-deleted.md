@@ -11,7 +11,8 @@ published: true
 - Cursor のエージェントに「不要なブランチを整理して」と依頼したところ、**D ドライブ配下のデータが全て消失しました**(ゴミ箱にも残らず)
 - Cursor のチャット履歴・ターミナル履歴も失われたため、**実行されたコマンドは特定できていません**
 - AI に分析してもらった結果、推定される原因は `git clean -fdx` の誤爆、または削除コマンドのパス誤解決
-- 教訓:**AI エージェントに破壊的コマンドの実行権限を渡すなら、Cursor 設定・OS・バックアップの 3 層で防御する**
+- 同種の事故は Claude Code や Gemini CLI でも公開報告があり、**特定ツールではなく AI エージェント全般の構造的な問題**
+- 教訓:**AI エージェントに破壊的コマンドの実行権限を渡すなら、エージェント設定・OS・バックアップの 3 層で防御する**
 
 同じ事故を起こす人を一人でも減らしたくて、ポストモーテムとして残します。
 
@@ -93,17 +94,33 @@ Remove-Item -Recurse -Force $targetDir
 なお `git branch -D` 自体はワーキングツリーのファイルを消しません。犯人は「ブランチ整理のついでに実行された別の何か」のはずです。
 :::
 
+## これは Cursor 固有の問題ではない
+
+タイトルには Cursor と書きましたが、これは「Cursor が危ないツールだ」という話ではありません。**同種の事故は主要な AI コーディングエージェントすべてで公開報告されています。**
+
+- **Claude Code**:「コマンドを教えて(表示して)」と頼んだのに `rm` を即実行し、しかも対象を間違えて別ファイルを削除した事例([Issue #24854](https://github.com/anthropics/claude-code/issues/24854))。「削除していい?」と質問文を出力した 0.3 秒後、ユーザーの返答を待たずに同一レスポンス内で `rm` を実行した事例([Issue #44288](https://github.com/anthropics/claude-code/issues/44288))。本番データベースに確認なしで一括 DELETE を実行した事例([Issue #54477](https://github.com/anthropics/claude-code/issues/54477))など多数
+- **Gemini CLI**: `mkdir` の失敗を成功と誤認したまま、存在しないフォルダへの move を繰り返してファイルを連鎖的に上書き消去。「I have failed you completely and catastrophically(私は完全かつ壊滅的にあなたを裏切りました)」という謝罪で有名になった事例([Ars Technica の報道](https://arstechnica.com/information-technology/2025/07/ai-coding-assistants-chase-phantoms-destroy-real-user-data/))。別途 1.2TB のデータを消した報告([Issue #27397](https://github.com/google-gemini/gemini-cli/issues/27397))もあります
+- **Replit**:「コードを変更するな」という明示的な指示を無視して本番データベースを削除した事例(上記 Ars Technica 記事内で報道)
+
+共通するのは、**エージェントが破壊的コマンドを躊躇なく実行し、実行結果の確認(read-after-write)をしない**という、特定製品ではなくエージェントというアーキテクチャに根ざした問題だという点です。Cursor / Claude Code / Codex / Gemini CLI のどれを使っていても、以下の対策はそのまま当てはまります。
+
 ## 再発防止策
 
-「Cursor 側の設定」「OS 側の防御」「バックアップ」の 3 層での対策が提案されました。1 層だけだと必ず穴が残ります。
+「エージェント側の設定」「OS 側の防御」「バックアップ」の 3 層での対策が提案されました。1 層だけだと必ず穴が残ります。
 
-### 1. Cursor 側:エージェントに破壊的操作をさせない
+### 1. エージェント側:破壊的操作をさせない
 
-- **auto-run(YOLO モード)を無効化**し、コマンド実行は毎回手動 Approve に
-- コマンドの **denylist** に破壊的コマンドを登録:
+どのツールにも「自動実行の無効化」と「コマンドの拒否リスト」に相当する仕組みがあります。
+
+- **コマンドの自動実行を無効化**し、実行は毎回手動 Approve に
+  - Cursor: auto-run(YOLO モード)をオフ
+  - Claude Code: `acceptEdits` / `bypassPermissions` などの permission mode を使わない
+  - Codex CLI: approval mode を `full-auto` にしない
+- **denylist(拒否リスト)** に破壊的コマンドを登録:
   - `rm` / `rmdir` / `del` / `Remove-Item` / `rd`
   - `git clean` / `git reset --hard` / `git worktree remove`
   - `format` / `mv`
+  - Cursor はコマンド denylist 設定、Claude Code は `settings.json` の `permissions.deny`(例: `Bash(rm:*)`)で登録できます
 - 特に `git clean` は「掃除」という響きのせいでエージェントが気軽に打ちがちなので必須
 - ワークスペースは**プロジェクトフォルダ単位で開く**。ドライブ直下のような広い範囲を開かない(エージェントが触れる範囲=事故の最大範囲)
 
